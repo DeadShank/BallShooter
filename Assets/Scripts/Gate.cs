@@ -14,17 +14,18 @@ public class Gate : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            winScreen.SetActive(true);
+            player.enabled = false;
+        }
+        
         if (other.gameObject.CompareTag("Bullet"))
         {
             OpenDoors();
             isOpen = true;
         }
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            winScreen.SetActive(true);
-            player.enabled = false;
-        }
     }
 
     private void OpenDoors()
