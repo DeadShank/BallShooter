@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     public bool GoToFinish;
     
-    private float lowHp = 0.1f;
+    private float minSize = 0.1f;
     private float maxTime = 6;
     private float currentTime;
     private float initialScale;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
             currentTime += Time.deltaTime;
             float scaleFactor = currentTime / maxTime;
 
-            float newScale = Mathf.Max(lowHp, initialScale - (initialScale * scaleFactor));
+            float newScale = Mathf.Max(minSize, initialScale - (initialScale * scaleFactor));
             transform.localScale = Vector3.one * newScale;
             currentBullet.GetComponent<Bullet>().explosionRadius = currentBullet.transform.localScale.x * scaleFactor;
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (transform.localScale.x <= lowHp)
+        if (transform.localScale.x <= minSize)
         {
            loseScreen.SetActive(true);
            enabled = false;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     {
         if (currentBullet != null)
         {
-            currentBullet.GetComponent<Bullet>().ReadyToShoot = true;
+            currentBullet.GetComponent<Bullet>().UnlockMovement = true;
 
             initialScale = transform.localScale.x;
 

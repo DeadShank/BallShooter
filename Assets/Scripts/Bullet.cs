@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 1;
     public Transform GatePos;
-    public bool ReadyToShoot;
+    public bool UnlockMovement;
     public float explosionRadius;
+    private float speed = 1;
+
     private void Update()
     {
-        if (ReadyToShoot)
+        if (UnlockMovement)
         {
             transform.position = Vector3.MoveTowards(transform.position, GatePos.position, speed * Time.deltaTime);
         }

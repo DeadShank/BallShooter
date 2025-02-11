@@ -25,7 +25,6 @@ public class Gate : MonoBehaviour
             OpenDoors();
             isOpen = true;
         }
-
     }
 
     private void OpenDoors()
