@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Line : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] public Entry Entry;
 
     private Vector3 defaultScale;
 
-    private float ScalePlayerBall => player.gameObject.transform.localScale.x;
+    private float ScalePlayerBall => Entry.Player.gameObject.transform.localScale.x;
 
     private void Start()
     {

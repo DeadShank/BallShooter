@@ -1,18 +1,22 @@
-using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Transform GatePos;
+    public Entry Entry;
     public bool UnlockMovement;
     public float explosionRadius;
     private float speed = 1;
+
+    private void Awake()
+    {
+        Entry = FindObjectOfType<Entry>();
+    }
 
     private void Update()
     {
         if (UnlockMovement)
         {
-            transform.position = Vector3.MoveTowards(transform.position, GatePos.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, Entry.Gate.transform.position, speed * Time.deltaTime);
         }
         
     }

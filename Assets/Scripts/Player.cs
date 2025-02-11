@@ -1,15 +1,13 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] public Entry Entry;
     [SerializeField] private Transform bulletPos;
-    [SerializeField] private Transform gatePos;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject loseScreen;
 
     public bool GoToFinish;
-    
+
     private float minSize = 0.1f;
     private float maxTime = 6;
     private float currentTime;
@@ -25,7 +23,6 @@ public class Player : MonoBehaviour
     private void OnMouseDown()
     {
         currentBullet = Instantiate(bulletPrefab, bulletPos.position, bulletPos.rotation);
-        currentBullet.GetComponent<Bullet>().GatePos = gatePos;
     }
 
     private void OnMouseDrag()
@@ -47,8 +44,8 @@ public class Player : MonoBehaviour
 
         if (transform.localScale.x <= minSize)
         {
-           loseScreen.SetActive(true);
-           enabled = false;
+            Entry.UIController.EnableLoseScreen();
+            enabled = false;
         }
     }
 
@@ -75,6 +72,7 @@ public class Player : MonoBehaviour
 
     public void MovePlayerToNextPoint()
     {
-        transform.position = Vector3.MoveTowards(transform.position, gatePos.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, Entry.Gate.gameObject.transform.position,
+            speed * Time.deltaTime);
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    [SerializeField] public Entry Entry;
+        
     [SerializeField] private Transform door;
-    [SerializeField] private GameObject winScreen;
     [SerializeField] private Player player;
 
     private float openDistance = 2f;
@@ -16,7 +17,7 @@ public class Gate : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            winScreen.SetActive(true);
+            Entry.UIController.EnableWinScreen();
             player.enabled = false;
         }
         
